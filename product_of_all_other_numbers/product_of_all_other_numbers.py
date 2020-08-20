@@ -3,9 +3,24 @@ Input: a List of integers
 Returns: a List of integers
 '''
 def product_of_all_other_numbers(arr):
-    # Your code here
+   # want to slice the arr at i
+   # want arr[:i] and arr[i+1:]
 
-    pass
+    L, R, answer = [0]*len(arr), [0]*len(arr), [0]*len(arr)
+
+    L[0] = 1
+
+    for i in range(1, len(arr)):
+        L[i] = arr[i - 1] * L[i -1]
+    
+    R[len(arr) - 1] = 1
+    for i in reversed(range(len(arr) - 1)):
+        R[i] = arr[i + 1] * R[i + 1]
+        
+    for i in range(len(arr)):
+        answer[i] = L[i] * R[i]
+       
+    return answer
 
 
 if __name__ == '__main__':
